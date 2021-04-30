@@ -11,6 +11,7 @@ const User = require('../../models/User');
 
 
 
+
 router.get('/me',auth,(req,res,next)=>{
     
     Profile.findOne({user:req.user.id})
@@ -297,7 +298,6 @@ router.get('/',(req,res,next)=>{
             headers: {'User-Agent':'node-js'}
         }
 
-        
 
             request(options,(error,response,body)=>{
                 if(error){
@@ -306,9 +306,6 @@ router.get('/',(req,res,next)=>{
                 }
 
                 if(response.statusCode !== 200){
-                    console.log(options.uri)
-                    console.log(body)
-                    console.log(req.params.username)
                     res.status(404).json({msg:'No Github profile found'})
                     return;
                 }
