@@ -1,0 +1,6 @@
+{
+    "mongoURI":"mongodb+srv://test:mango123@db1.fhskf.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
+    "jwtToken":"mytoken",
+    "githubCliendId":"b49a6cc90a66c8a157db",
+    "githubSecret":"2945e687af0769d56e0434a877de770af94ba411"
+} 
