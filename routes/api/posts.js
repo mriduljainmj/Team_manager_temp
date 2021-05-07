@@ -61,7 +61,7 @@ router.get('/:id',auth,(req,res,next)=>{
         return res.json(post)
     })
     .catch(err=>{
-        if(err.kind === 'OnjectId'){
+        if(err.kind === 'ObjectId'){
             return res.json({err:"Post not found."})
         }
         console.log(err.message)
@@ -80,7 +80,7 @@ router.delete('/:id',auth,(req,res,next)=>{
         return res.json({msg:"post removed"})
     })
     .catch(err=>{
-        if(err.kind === 'OnjectId'){
+        if(err.kind === 'ObjectId'){
             return res.json({err:"Post not found."})
         }
         console.log(err.message)

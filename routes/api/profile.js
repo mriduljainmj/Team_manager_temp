@@ -7,7 +7,7 @@ const auth = require('../../middleware/auth');
 // const fetch = require('node-fetch');
 const Profile = require('../../models/Profile');
 const User = require('../../models/User');
-
+const Post = require('../../models/Post')
 
 
 
@@ -140,8 +140,11 @@ router.get('/',(req,res,next)=>{
 
     
     router.delete('/',auth,(req,res,next)=>{
-        //also remove the posts from the user 
-        Profile.findOneAndRemove({user:req.user.id})
+        
+        Post.deleteMany({user:req.user.id})
+        .then(()=>{
+           return  Profile.findOneAndRemove({user:req.user.id})
+        })
         .then(()=>{
             return User.findOneAndRemove({_id:req.user.id})
             .then(()=>{
@@ -226,7 +229,7 @@ router.get('/',(req,res,next)=>{
     router.put('/education',[auth,[
         check('school','School is required').not().isEmpty(),
         check('degree','degree is required').not().isEmpty(),
-        check('fieldOfstudy','Field Of Study is required').not().isEmpty(),
+        check('fieldOfstudy','Field of Study is required').not().isEmpty(),
         check('from','From Date is required').not().isEmpty()
     ]],(req,res,next)=>{
             const errors = validationResult(req);

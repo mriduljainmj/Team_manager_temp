@@ -7,9 +7,10 @@ const jwt = require('jsonwebtoken');
 const config = require('config')
 const {check ,validationResult} = require('express-validator')
 
+
 router.get('/',auth,(req,res)=>{
 
-    User.findById(req.user.id).select('-password')
+      User.findById(req.user.id).select('-password')
     .then((user)=>{
         return res.json(user)
     })
